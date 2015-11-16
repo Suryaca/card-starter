@@ -1,4 +1,4 @@
-//Card object - template function
+/Card object - template function
 var card = function(value, name, suit){
   this.value = value;
   this.name = name;
@@ -10,14 +10,14 @@ var deck = function(){
   this.names = ['1','2','3','4','5','6','7','8','9','10','J','Q','K'];
   this.suits = ['Hearts','Diamonds','Spades','Clubs'];
   var cards = [];
-  
+
   for(var i = 0; i< this.suits.length;i++)
   {
     for(var j = 0; j< this.names.length;j++){
       cards.push(new card(j+1, this.names[j], this.suits[i]));
       console.log(cards);
     }
-      
+
   }
 
   return cards;
@@ -25,9 +25,8 @@ var deck = function(){
 
 //Creating a deck object
 var myDeck = new deck();
-
 window.onload = function(){
-
+myDeck = shuffle(myDeck);
   //Loop for all 52 cards in the deck
   for(var i = 0; i< myDeck.length; i++)
   {
@@ -46,4 +45,19 @@ window.onload = function(){
   }
 };
 
+function shuffle (Arr){
+  var input = Arr;
+  for (var i = 0; i<input.length; i++) 
+  {
+    //Storing the array element value to temp variable [temp]
+    item = input[i];
+    //selecting a random number from the given length of the array [X]
+    var randomnumber = Math.floor(Math.random()*(i+1));
+    //swapping the Elements
+    input[i] = input[randomnumber];
+    input[randomnumber] = item;
 
+  }
+
+  return input;
+}
