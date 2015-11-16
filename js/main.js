@@ -43,11 +43,11 @@ function compareVal ( a ,b)
 
   if ( a == b)
   {
-    return = true;
+    return true;
   }
   else
   {
-    return flase;
+    return false;
   }
 }
 //Creating a deck object
@@ -55,26 +55,26 @@ function compareVal ( a ,b)
 
 var myDeck = new deck();
 
-window.onload = function(){
-
+window.onload = function()
+{
   shuffle(myDeck);
   //Loop for all 52 cards in the deck
   for(var i = 0; i< myDeck.length; i++)
   {
-    var vals[];
+    var vals = [];
     div = document.createElement('div');
     div.className = 'card';
     div.addEventListener('click', function(event)
     {
       this.querySelector(".number").style.display = "block";
       this.querySelector(".suit").style.display = "block";
-      for(var counter= 0; counter<2;val++)
-        vals[counter] = this.querySelector(".number")
+      for(var counter= 0; counter<2;counter++)
+        vals[counter] = this.querySelector(".number");
     });
     if (vals.length == 2)
     {
-      var result = compareVal (vals[0],vals[1])
-      if (result == True)
+      var result = compareVal(vals[0],vals[1])
+      if (result == true)
       {
         alert("Congrats..! you won.");
       }
