@@ -1,4 +1,4 @@
-/Card object - template function
+//Card object - template function
 var card = function(value, name, suit){
   this.value = value;
   this.name = name;
@@ -47,7 +47,7 @@ myDeck = shuffle(myDeck);
 
 function shuffle (Arr){
   var input = Arr;
-  for (var i = 0; i<input.length; i++) 
+  for (var i = 0; i<input.length; i++)
   {
     //Storing the array element value to temp variable [temp]
     item = input[i];
