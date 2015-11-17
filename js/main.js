@@ -42,11 +42,12 @@ var shuffle = function(deck){
 cardCounter =0;
 playerCounter =0;
 //Creating a deck object
-var myDeck = new deck();
-
+var DeckOne = new deck();
+var DeckTwo = new deck();
+var myDeck = DeckOne.concat(DeckTwo);
 window.onload = function(){
 
-  shuffle(myDeck);
+  //shuffle(myDeck);
   //Loop for all 52 cards in the deck
   for(var i = 0; i< myDeck.length; i++)
   {
@@ -63,8 +64,10 @@ window.onload = function(){
       }
       else if(cardCounter==1){
         var currentCardValue = this.querySelector(".number").innerHTML;
+        var currentcardSuit = this.querySelector(".suit").innerHTML;
         var previousCardValue = document.getElementsByClassName("show")[0].innerHTML;
-        if(currentCardValue==previousCardValue)
+        var previousCardSuit = document.getElementsByClassName("show")[0].innerHTML;
+        if(currentCardValue==previousCardValue && currentcardSuit == previousCardSuit)
         {
           players[playerCounter].score+=10;
           document.getElementById("players["+playerCounter+"]").querySelector(".score").innerHTML=players[playerCounter].score;
@@ -72,11 +75,9 @@ window.onload = function(){
         else
         {
           playerCounter = 1-playerCounter;
-          document.getElementById("messages").innerHTML =players[playerCounter].name+", this is your turn "+playerCounter;
-
+          document.getElementById("messages").innerHTML = players[playerCounter].name + ",this is your turn "
+          + playerCounter;
         }
-
-
         cardCounter++;
       }
       else
@@ -84,9 +85,6 @@ window.onload = function(){
 
       this.querySelector(".number").classList.add("show");
       this.querySelector(".suit").classList.add("show");
-
-
-
     });
 
     var ascii_char;
