@@ -54,35 +54,35 @@ function compareVal ( a ,b)
 // Sobin Code
 
 var myDeck = new deck();
-
+counter = 0;
+previousCard = null;
 window.onload = function()
 {
   shuffle(myDeck);
   //Loop for all 52 cards in the deck
   for(var i = 0; i< myDeck.length; i++)
   {
-    var vals = [];
+
     div = document.createElement('div');
     div.className = 'card';
     div.addEventListener('click', function(event)
     {
       this.querySelector(".number").style.display = "block";
       this.querySelector(".suit").style.display = "block";
-      for(var counter= 0; counter<2;counter++)
-        vals[counter] = this.querySelector(".number");
-    });
-    if (vals.length == 2)
-    {
-      var result = compareVal(vals[0],vals[1])
-      if (result == true)
+      if(counter==0)
+        previousCard = this;
+      console.log(counter++);
+      if(counter==3)
       {
-        alert("Congrats..! you won.");
+       console.log(previousCard); previousCard.querySelector(".number").style.display = "none";
+        previousCard.querySelector(".suit").style.display = "none";
+              this.querySelector(".number").style.display = "none";
+      this.querySelector(".suit").style.display = "none";
+
+        counter =0;
       }
-      else {
-        alert ("Better luch next time.. Next player..!");
-      }
-      vals =[];
-    }
+    });
+
 
     var ascii_char;
     if(myDeck[i].suit =='Diamonds'){
