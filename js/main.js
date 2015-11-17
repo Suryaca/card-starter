@@ -29,9 +29,9 @@ var player = function(name){
   this.name = name;
   this.score = 0;
 }
-
-var player1 = new player("prath");
-var player2 = new player("Surya");
+var players =[];
+players[0]= new player(prompt("Enter your player1 name?"));
+players[1] = new player(prompt("Enter your player2 name?"));
 
 var shuffle = function(deck){
   for(var j, x, i = deck.length; i; j = parseInt(Math.random() * i), x = deck[--i], deck[i] = deck[j], deck[j] = x);
@@ -39,24 +39,15 @@ var shuffle = function(deck){
   return deck;
 };
 
-function setPlayer(playerOne , playerTwo)
-{
-  var temp = player1;
-  player2 = player1;
-  player1 = temp;
-};
-
 cardCounter =0;
-currentPlayer = null;
-
+playerCounter =0;
 //Creating a deck object
 var myDeck = new deck();
 
 window.onload = function(){
 
-  //shuffle(myDeck);
+  shuffle(myDeck);
   //Loop for all 52 cards in the deck
-  currentPlayer = player1;
   for(var i = 0; i< myDeck.length; i++)
   {
     div = document.createElement('div');
@@ -75,22 +66,27 @@ window.onload = function(){
         var previousCardValue = document.getElementsByClassName("show")[0].innerHTML;
         if(currentCardValue==previousCardValue)
         {
-          console.log(currentPlayer);
-          currentPlayer = currentPlayer;
-          player1.score+=10;
-          console.log(player1.score);
-          //document.getElementById("player1").querySelector(".score").innerHTML=player1.score;
+          players[playerCounter].score+=10;
+          document.getElementById("players["+playerCounter+"]").querySelector(".score").innerHTML=players[playerCounter].score;
         }
         else
-        //playerCounter++;
+        {
+          playerCounter = 1-playerCounter;
+          document.getElementById("messages").innerHTML =players[playerCounter].name+", this is your turn "+playerCounter;
+
+        }
+
+
         cardCounter++;
-        currentPlayer = setPlayer(player1 , player2);
-        console.console.log(currentPlayer);
       }
       else
         cardCounter++;
+
       this.querySelector(".number").classList.add("show");
       this.querySelector(".suit").classList.add("show");
+
+
+
     });
 
     var ascii_char;
@@ -106,8 +102,13 @@ window.onload = function(){
   }
 
   scoreDiv = document.createElement('div');
-  scoreDiv.className ='score';
-  scoreDiv.innerHTML='<span id="player1">' + player1.name +'<br/>'+player1.score+'</span>'+'<span id="player2">' + player2.name +'<br/>'+player2.score+'</span>';
+  scoreDiv.className ='scores';
+  scoreDiv.innerHTML='<span id="players[0]" class="player">' + players[0].name +'<br/><b class="score">'+players[0].score+'</b></span>'+'<span class="player" id="players[1]">' + players[1].name +'<br/><b class="score">'+players[1].score+'</b></span>';
   document.body.appendChild(scoreDiv);
+
+  messageDiv = document.createElement('div');
+  messageDiv.setAttribute('id','messages');
+  messageDiv.innerHTML= players[0].name +', this is your tune';
+  document.body.appendChild(messageDiv);
 
 };
